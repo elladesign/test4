@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinner Recipe Recommender</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading recipes...</p>
+        </div>
+        
+        <h1>Dinner Recipe Recommender</h1>
+        
+        <div class="filter-section">
+            <select id="cuisineFilter">
+                <option value="">All Cuisines</option>
+                <option value="American">American</option>
+                <option value="Chinese">Chinese</option>
+                <option value="French">French</option>
+                <option value="Indian">Indian</option>
+                <option value="Italian">Italian</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Thai">Thai</option>
+            </select>
+
+            <select id="proteinFilter">
+                <option value="">All Proteins</option>
+                <option value="Beef">Beef</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Pork">Pork</option>
+                <option value="Seafood">Seafood</option>
+                <option value="Vegetarian">Vegetarian</option>
+            </select>
+
+            <select id="tagFilter">
+                <option value="">All Tags</option>
+                <!-- Options will be dynamically populated -->
+            </select>
+
+            <div class="time-filter">
+                <label for="timeSlider">Preparation Time: <span id="timeValue">Any Time</span></label>
+                <input type="range" 
+                       id="timeSlider" 
+                       min="0" 
+                       max="60" 
+                       step="5" 
+                       value="0">
+                <div class="time-labels">
+                    <span>Any</span>
+                    <span>30 mins</span>
+                    <span>60 mins</span>
+                </div>
+            </div>
+
+            <button id="applyFilters">Apply Filters</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="all">All Recipes</button>
+            <button class="tab-btn" data-tab="favorites">My Recipes</button>
+            <button class="tab-btn" data-tab="custom">Add Custom Recipe</button>
+        </div>
+
+        <div class="tab-content" id="allRecipes">
+            <div id="resultsCount" class="results-count"></div>
+            <div id="initialIllustration" class="initial-illustration">
+                <!-- Updated SVG illustration of a cooking pan with a fried egg -->
+                <svg width="100" height="100" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <circle cx="32" cy="32" r="30" stroke="#4CAF50" stroke-width="4" fill="#f3f3f3"/>
+                    <ellipse cx="32" cy="32" rx="15" ry="10" fill="#fff"/>
+                    <circle cx="32" cy="32" r="5" fill="#FFD700"/>
+                    <path d="M32 2v8" stroke="#4CAF50" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M32 54v8" stroke="#4CAF50" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M2 32h8" stroke="#4CAF50" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M54 32h8" stroke="#4CAF50" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+                <p>Preparing your recipes...</p>
+            </div>
+            <div id="loadingSpinner" class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading recipes...</p>
+            </div>
+            <div class="recipe-grid" id="recipeList"></div>
+        </div>
+
+        <div class="tab-content hidden" id="favorites">
+            <div class="recipe-grid" id="favoritesList"></div>
+        </div>
+
+        <div class="tab-content hidden" id="custom">
+            <form id="customRecipeForm">
+                <select id="customCuisine" required>
+                    <option value="" disabled selected>Select Cuisine</option>
+                    <option value="American">American</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="French">French</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Thai">Thai</option>
+                </select>
+
+                <input type="text" id="recipeName" placeholder="Recipe Name" required>
+                <textarea id="ingredients" placeholder="Ingredients (one per line)" required></textarea>
+                <textarea id="instructions" placeholder="Instructions" required></textarea>
+                <input type="text" id="cookTime" placeholder="Cooking Time" required>
+                
+                <div class="form-buttons">
+                    <button type="submit">Add Recipe</button>
+                    <button type="button" id="cancelCustomRecipe">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
